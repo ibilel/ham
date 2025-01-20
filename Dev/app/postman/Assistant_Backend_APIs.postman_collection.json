@@ -1,0 +1,88 @@
+{
+    "info": {
+        "name": "Assistant Backend APIs",
+        "description": "API documentation for the Assistant backend, including routes for saving JSON, retrieving data, exporting data, and weather integration.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Save JSON",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {"key": "Content-Type", "value": "application/json"}
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"stt_result\": \"Allume la lumière\",\n    \"user_id\": 123,\n    \"timestamp\": \"2025-01-20T14:00:00\"\n}"
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:5000/save-json",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "5000",
+                    "path": ["save-json"]
+                }
+            }
+        },
+        {
+            "name": "Get JSON",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:5000/get-json",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "5000",
+                    "path": ["get-json"]
+                }
+            }
+        },
+        {
+            "name": "Export JSON",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:5000/export-json",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "5000",
+                    "path": ["export-json"]
+                }
+            }
+        },
+        {
+            "name": "Export CSV",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:5000/export-csv",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "5000",
+                    "path": ["export-csv"]
+                }
+            }
+        },
+        {
+            "name": "Weather API",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {"key": "Content-Type", "value": "application/json"}
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"city\": \"Paris\"\n}"
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:5000/weather",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "5000",
+                    "path": ["weather"]
+                }
+            }
+        }
+    ]
+}
