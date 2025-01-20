@@ -214,4 +214,9 @@ python app.py
    - Ajouter d'autres API tiers comme Google Maps ou un service de traduction.
 
 ---
-Si vous avez des questions, n'hésitez pas à contacter l'équipe backend. 😊
+Auteurs : 
+- Samy Bouadoud Dev (partie backend + readme)
+- Youssouf Abayazid Dev (partie front)
+- Kheir-Eddine MEDERREG Data
+- Olivier Mistral Data
+- Billel SOUANE Infra
