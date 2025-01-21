@@ -1,0 +1,82 @@
+
+:root {
+  --primary_principal: #212121;
+  --secondary: red;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
+body {
+  font-family: "Maven Pro", sans-serif;
+  background-color: var(--primary_principal);
+}
+
+.primary_bg {
+
+  background-color: #212121;
+}
+#primary_bg {
+
+  background-color: #212121;
+}
+
+.secondary_color {
+
+  color: var(--secondary);
+}
+
+.recording_button {
+ margin: 10px;
+ color: #fff;
+ background-color: transparent;
+ border: none;
+ width: 200px;
+ height: 200px;
+ border-radius: 100px;
+ border-color: transparent;
+}
+
+
+.recording_button svg {
+  width: 100px;
+  font-size: 20px;
+}
+
+.recording_button img {
+  
+  width: 100%;
+}
+
+.disable_button_on {
+
+  border-radius: 100px;
+  padding: 20px;
+  width: 70px;
+  background: rgba(165, 254, 162, 0.53);
+  border: none;
+}
+
+.disable_button_off {
+
+  border-radius: 100px;
+  width: 70px;
+  padding: 20px;
+  background: rgba(255, 138, 138, 0.53);
+  border: none;
+}
+
+
+.disable_button_off .off{
+  color: #ff0000;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.disable_button_on .on {
+  color: #2bff00;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.disable_button .off {
+}
