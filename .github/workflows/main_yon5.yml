@@ -7,7 +7,8 @@ name: Build and deploy Python app with Node.js frontend to Azure Web App - YON5
 on:
   push:
     branches:
-      - main && frontend
+      - main
+      - frontend
   workflow_dispatch:
 
 jobs:
