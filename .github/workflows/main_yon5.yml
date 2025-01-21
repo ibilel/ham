@@ -37,11 +37,11 @@ jobs:
           node-version: '18' # Or your desired Node.js version
 
       - name: Install Frontend Dependencies
-        working-directory: ./ham/Dev/frontend # Path to your frontend directory
+        working-directory: Dev/frontend # Path to your frontend directory
         run: npm install # Or yarn install
 
       - name: Build Frontend
-        working-directory: ./ham/Dev/frontend
+        working-directory: Dev/frontend
         run: npm run build # Or yarn build
 
       - name: Zip artifact for deployment
