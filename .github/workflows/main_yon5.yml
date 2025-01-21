@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - YON5
+name: Build and deploy Python app with Node.js frontend to Azure Web App - YON5
 
 on:
   push:
@@ -26,11 +26,22 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-      
+
       - name: Install dependencies
         run: pip install -r Dev/requirements.txt
-        
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+
+      - name: Set up Node.js (replace 18 with your desired version)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install Frontend Dependencies (adjust path if needed)
+        working-directory: /frontend  # Change this to your frontend directory path
+        run: npm install  # Or yarn install if you use yarn
+
+      - name: Build Frontend
+        working-directory: /frontend  # Change this to your frontend directory path
+        run: npm run build  # Or yarn build if you use yarn
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
@@ -49,7 +60,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -59,11 +70,10 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'YON5'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4995D39D06A411494A45FA9B4BF4657 }}
+          publish-profile: ${{ secrets.YON5_APP_AZURE }}
