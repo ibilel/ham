@@ -40,7 +40,7 @@ function PublicAcceuil() {
     };
 
     recognitionRef.current = recognition;
-  }, []);
+  }, [transcript]);
 
   const startRecording = () => {
     if (recognitionRef.current) {
@@ -90,7 +90,7 @@ function PublicAcceuil() {
             disabled={isRecording || isButtonDisabled}
           >
             {isRecording ? (
-              <img src={window.location.origin + '/assets/images/loading.gif'} className='image_logo' alt="image loading"/>
+              <img src={window.location.origin + '/assets/images/loading.gif'} className='image_logo'/>
             ) : (
               <FontAwesomeIcon icon="fa-solid fa-microphone" style={{ fontSize: '70px' }} />
             )}
