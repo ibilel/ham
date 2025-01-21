@@ -17,8 +17,8 @@ Ce projet consiste à développer un assistant vocal intelligent déployé sur d
      - `timestamp` : Date et heure de la réception.
 
 3. **Traitement Backend** :
-   - Le backend utilise un système de NLP (via spaCy) pour interpréter la phrase.
-   - En fonction du contexte, il appelle les APIs pertinentes (Spotify, OpenWeatherMap, OpenAI) pour générer une réponse.
+   - Le backend utilise un système de NLP pour interpréter la phrase.
+   - En fonction du contexte, il appelle les APIs pertinentes (Spotify, OpenWeatherMap) pour générer une réponse.
    - La réponse est construite sous la forme d’un objet JSON.
 
 4. **Retour au Frontend** :
@@ -49,29 +49,32 @@ Ce projet consiste à développer un assistant vocal intelligent déployé sur d
 1. **Technologies utilisées** :
    - **Python 3.13** : Langage principal.
    - **Flask** : Framework backend.
-   - **spaCy** : NLP pour analyser les phrases reçues.
    - **SQLite** : Base de données pour stocker les conversations.
 
 2. **Fonctionnalités principales** :
-   - Analyse des phrases via NLP.
+   - Analyse des phrases via NLP simplifié.
    - Appels aux APIs en fonction du contexte :
      - **Spotify API** : Pour jouer de la musique.
      - **OpenWeatherMap API** : Pour fournir des informations météo.
-     - **OpenAI API** : Pour générer des réponses générales.
    - Gestion des logs pour tracer toutes les conversations et requêtes.
    - Export des données sous forme de CSV.
 
 3. **Routes principales** :
    - **POST /process-json** :
      - Reçoit un JSON contenant la phrase et d’autres métadonnées.
-     - Analyse le contenu via NLP.
-     - Retourne une réponse adaptée au frontend.
+     - Analyse le contenu pour déterminer l’intention et répond en fonction.
+
+   - **POST /save-json** :
+     - Sauvegarde un objet JSON dans la base de données.
+
+   - **GET /get-json** :
+     - Récupère tous les JSON enregistrés dans la base.
 
    - **GET /export-csv** :
      - Exporte les données de la base au format CSV pour analyse.
 
-   - **GET /logs** :
-     - Retourne les logs des requêtes et réponses pour audit.
+   - **GET /status** :
+     - Vérifie le statut du backend.
 
 ---
 
@@ -87,9 +90,8 @@ Ce projet consiste à développer un assistant vocal intelligent déployé sur d
 
 2. **Spotify** :
    - Permet de jouer de la musique ou de gérer des playlists.
-
-3. **OpenAI** :
-   - Fournit des réponses générales en utilisant les capacités avancées de traitement du langage naturel.
+   - Exemple d’utilisation :
+     - Rechercher une chanson : "Joue Papaoutai de Stromae."
 
 ---
 
@@ -139,27 +141,7 @@ Ce projet consiste à développer un assistant vocal intelligent déployé sur d
 
 ---
 
-## **8. NLP (Natural Language Processing)**
-1. **Technologie :** spaCy
-2. **Processus :**
-   - Analyse de la phrase reçue pour détecter les entités et le contexte.
-   - Détermine si la phrase est liée à :
-     - La météo (API OpenWeatherMap).
-     - La musique (API Spotify).
-     - Une question générale (API OpenAI).
-3. **Exemple d’analyse NLP** :
-   - Entrée : "Mets-moi une chanson de Queen."
-   - Sortie :
-     ```json
-     {
-         "intent": "play_music",
-         "artist": "Queen"
-     }
-     ```
-
----
-
-## **9. Fonctionnement détaillé des GET et POST**
+## **8. Fonctionnement détaillé des GET et POST**
 1. **Requête POST (Frontend → Backend)** :
    - **URL :** `/process-json`
    - **Body :**
@@ -190,8 +172,9 @@ Ce projet consiste à développer un assistant vocal intelligent déployé sur d
    - Intégrer des services comme Google Maps pour des fonctionnalités supplémentaires.
 3. **Optimisation des performances** :
    - Déployer un système de mise en cache pour réduire le temps de réponse.
-  
+
 ---
+
 ## **Auteur**
 
 Samy Boudaoud
