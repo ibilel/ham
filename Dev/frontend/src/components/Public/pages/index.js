@@ -9,7 +9,7 @@ function PublicAcceuil() {
   const [isDataAvailable , setIsDataAvailable] = useState(false);
   const recognitionRef = useRef(null);
 
-  const getRecognition = () => {
+  useEffect(() => {
     if (!('webkitSpeechRecognition' in window)) {
       setError('Votre navigateur ne supporte pas la reconnaissance vocale.');
       return;
@@ -40,10 +40,6 @@ function PublicAcceuil() {
     };
 
     recognitionRef.current = recognition;
-  };
-
-  useEffect(() => {
-    getRecognition();
   }, []);
 
   const startRecording = () => {
@@ -94,7 +90,7 @@ function PublicAcceuil() {
             disabled={isRecording || isButtonDisabled}
           >
             {isRecording ? (
-              <img src={window.location.origin + '/assets/images/loading.gif'} className='image_logo' />
+              <img src={window.location.origin + '/assets/images/loading.gif'} className='image_logo' alt="image loading"/>
             ) : (
               <FontAwesomeIcon icon="fa-solid fa-microphone" style={{ fontSize: '70px' }} />
             )}
