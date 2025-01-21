@@ -59,22 +59,110 @@ Ce projet consiste à développer un assistant vocal intelligent déployé sur d
    - Gestion des logs pour tracer toutes les conversations et requêtes.
    - Export des données sous forme de CSV.
 
-3. **Routes principales** :
-   - **POST /process-json** :
-     - Reçoit un JSON contenant la phrase et d’autres métadonnées.
-     - Analyse le contenu pour déterminer l’intention et répond en fonction.
+3. **Routes principales et scénarios** :
 
-   - **POST /save-json** :
-     - Sauvegarde un objet JSON dans la base de données.
+### **Route : POST /process-json**
+- **Description** : Reçoit un JSON contenant la phrase et d’autres métadonnées. Analyse le contenu pour déterminer l’intention et répond en fonction.
+- **Exemples de scénarios** :
+  - **Scénario 1 : Demande de météo**
+    - Requête :
+      ```json
+      {
+          "phrase": "Quel temps fait-il à Paris ?",
+          "timestamp": "2025-01-20T14:00:00"
+      }
+      ```
+    - Réponse :
+      ```json
+      {
+          "message": "Voici la météo pour Paris : 12°C avec ciel dégagé."
+      }
+      ```
 
-   - **GET /get-json** :
-     - Récupère tous les JSON enregistrés dans la base.
+  - **Scénario 2 : Demande de musique**
+    - Requête :
+      ```json
+      {
+          "phrase": "Joue Papaoutai de Stromae",
+          "timestamp": "2025-01-20T14:00:00"
+      }
+      ```
+    - Réponse :
+      ```json
+      {
+          "message": "Voici un extrait audio pour Papaoutai de Stromae : https://p.scdn.co/mp3-preview/..."
+      }
+      ```
 
-   - **GET /export-csv** :
-     - Exporte les données de la base au format CSV pour analyse.
+  - **Scénario 3 : Phrase inconnue**
+    - Requête :
+      ```json
+      {
+          "phrase": "Je veux une réponse aléatoire",
+          "timestamp": "2025-01-20T14:00:00"
+      }
+      ```
+    - Réponse :
+      ```json
+      {
+          "message": "Je ne comprends pas votre demande."
+      }
+      ```
 
-   - **GET /status** :
-     - Vérifie le statut du backend.
+### **Route : POST /save-json**
+- **Description** : Sauvegarde un objet JSON dans la base de données.
+- **Exemple de scénario** :
+  - Requête :
+    ```json
+    {
+        "id": 1,
+        "phrase": "Quel temps fait-il à Paris ?",
+        "timestamp": "2025-01-20T14:00:00"
+    }
+    ```
+  - Réponse :
+    ```json
+    {
+        "message": "JSON sauvegardé avec succès.",
+        "id": 1
+    }
+    ```
+
+### **Route : GET /get-json**
+- **Description** : Récupère tous les JSON enregistrés dans la base.
+- **Exemple de réponse** :
+  ```json
+  [
+      {
+          "id": 1,
+          "data": {
+              "phrase": "Quel temps fait-il à Paris ?",
+              "timestamp": "2025-01-20T14:00:00"
+          },
+          "created_at": "2025-01-20 14:01:00"
+      }
+  ]
+  ```
+
+### **Route : GET /export-csv**
+- **Description** : Exporte les données de la base au format CSV pour analyse.
+- **Exemple de réponse** :
+  ```json
+  {
+      "message": "CSV exporté avec succès.",
+      "path": "exports/data_export.csv"
+  }
+  ```
+
+### **Route : GET /status**
+- **Description** : Vérifie le statut du backend.
+- **Exemple de réponse** :
+  ```json
+  {
+      "status": "OK",
+      "uptime": "2 hours"
+  }
+  ```
 
 ---
 
