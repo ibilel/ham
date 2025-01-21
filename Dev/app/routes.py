@@ -53,8 +53,9 @@ def analyze_command(command: str):
         else:
             return {"intent": "unknown", "message": "Localisation non trouvée."}
     
-    elif "musique" in commande_lower or "joue" in commande_lower or "jouer" in commande_lower or "chanson" in commande_lower or "lance" in commande_lower:
+    elif "musique" in commande_lower or "joue" in commande_lower or "jouer" in commande_lower or "chanson" in commande_lower or "chansons" in commande_lower or "lance" in commande_lower:
         music_query = extract_music_query(commande_lower)
+        print("musique :", commande_lower)
         if music_query:
             return {"intent": "music", "query": music_query}
         else:
