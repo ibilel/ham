@@ -37,11 +37,11 @@ jobs:
           node-version: '20'
 
       - name: Install Frontend Dependencies (adjust path if needed)
-        working-directory: /frontend  # Change this to your frontend directory path
+        working-directory: Dev/frontend  # Change this to your frontend directory path
         run: npm install  # Or yarn install if you use yarn
 
       - name: Build Frontend
-        working-directory: /frontend  # Change this to your frontend directory path
+        working-directory: Dev/frontend  # Change this to your frontend directory path
         run: npm run build  # Or yarn build if you use yarn
 
       - name: Zip artifact for deployment
